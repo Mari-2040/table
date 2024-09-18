@@ -1,18 +1,19 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Input from "./Input";
 import styles from "./input.module.css";
+import Button from "../button/Button";
 
-export default function InputComponent() {
+export default function InputComponent({ name, status, progress, launch, onclose }: any) {
   return (
     <div>
       <div className={styles.inputComponent_div}>
-        <Input placeholder="Section Name" type="text" />
-        <Input placeholder="Status" type="text" />
-        <Input placeholder="Progress" type="text" />
-        <Input placeholder="Launch" type="text" />
+        <Input placeholder="Section Name" type="text" value={name} />
+        <Input placeholder="Status" type="text" value={status} />
+        <Input placeholder="Progress" type="text" value={progress} />
+        <Input placeholder="Launch" type="text" value={launch} />
       </div>
-      <button className={styles.button}>Add Report</button>
+      <Button onClose={onclose} />
     </div>
   );
 }

@@ -10,10 +10,51 @@ interface InputComponentProps {
   value?: string;
   change?: (e: any) => void;
   label?: string;
+  onClose?: () => void;
 }
 
 export default function Input(props: InputComponentProps) {
-  const [text, setText] = useState("");
+  const [inputValue, setInputValue] = useState(props.initialData || "");
+
+  const handleInputChange = (e: any) => {
+    setInputValue(e.target.value);
+    if (props.change) {
+      props.change(e);
+    }
+  };
+
+  const [name, setName] = useState("");
+  const [status, setStatus] = useState("");
+  const [progress, setProgress] = useState("");
+  const [launch, setLaunch] = useState("");
+  const [reportData, setReportData] = useState([
+    {
+      name: "Info",
+      status: "Not Started",
+      progress: "Question 3/6",
+      launch: "Launch",
+    },
+  ]);
+
+  const handleAddReport = () => {
+    if (!name || !status || !progress || !launch) {
+      alert("შეავსეთ ყველა ველი");
+      return;
+    }
+
+    const newReport = {
+      name: name,
+      status: status,
+      progress: progress,
+      launch: launch,
+    };
+
+    setReportData([...reportData, newReport]);
+    setName("");
+    setStatus("");
+    setProgress("");
+    setLaunch("");
+  };
 
   return (
     <div>
@@ -21,10 +62,50 @@ export default function Input(props: InputComponentProps) {
         <span className={styles.spanStyle}>{props.label}</span>
         <input
           className={styles.inputStyle}
-          type={props.type}
+          type={props.type || "text"}
+          value={inputValue}
+          onChange={handleInputChange}
           placeholder={props.placeholder}
-          onChange={(e) => setText(e.target.value)}
         />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+        />
+        <input
+          type="text"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+          placeholder="Status"
+        />
+        <input
+          type="text"
+          value={progress}
+          onChange={(e) => setProgress(e.target.value)}
+          placeholder="Progress"
+        />
+        <input
+          type="text"
+          value={launch}
+          onChange={(e) => setLaunch(e.target.value)}
+          placeholder="Launch"
+        />
+        <button onClick={handleAddReport}>Add Report</button>
+
+        <div>
+          {reportData.map((report, index) => (
+            <div key={index}>
+              <h3>{report.name}</h3>
+              <p>Status: {report.status}</p>
+              <p>Progress: {report.progress}</p>
+              <p>Launch: {report.launch}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
