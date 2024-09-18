@@ -1,5 +1,3 @@
-"use client";
-import React, { useState } from "react";
 import Input from "./Input";
 import styles from "./input.module.css";
 import Button from "../button/Button";
@@ -10,6 +8,10 @@ export default function InputComponent({
   progress,
   launch,
   onClose,
+  setName,
+  setStatus,
+  setProgress,
+  setLaunch,
 }: any) {
   return (
     <div>
@@ -19,23 +21,32 @@ export default function InputComponent({
           type="text"
           value={name}
           label="section"
+          change={(e) => setName(e.target.value)}
         />
         <Input
           placeholder="Status"
           type="text"
           value={status}
           label=" status"
+          change={(e) => setStatus(e.target.value)}
         />
         <Input
           placeholder="Progress"
           type="text"
           value={progress}
           label="progres"
+          change={(e) => setProgress(e.target.value)}
         />
-        <Input placeholder="Launch" type="text" value={launch} label="launch" />
+        <Input
+          placeholder="Launch"
+          type="text"
+          value={launch}
+          label="launch"
+          change={(e) => setLaunch(e.target.value)}
+        />
       </div>
       <div className="flex justify-end ">
-        <Button onClose={onClose} />
+        <Button />
       </div>
     </div>
   );

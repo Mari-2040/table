@@ -2,23 +2,14 @@
 import { useState } from "react";
 import Header from "./components/header/Header";
 import Modal from "./components/modal/Modal";
+import { modalState } from "./store/Modal.store";
+import { useSnapshot } from "valtio";
 
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  const modalSnap = useSnapshot(modalState);
   return (
     <div>
-      <button onClick={toggleModal} className="openModal">
-        open
-      </button>
-      <Modal isOpen={isOpen} onClose={closeModal} />
+      <Modal isOpen={modalSnap.isOpen} />
       <Header />
     </div>
   );

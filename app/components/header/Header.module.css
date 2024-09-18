@@ -1,3 +1,12 @@
-.mari {
-  margin: 15px;
+.div_components {
+  margin: 5px;
+}
+
+.openModal {
+  cursor: pointer;
+  background-color: #b71616;
+  color: white;
+  width: 95px;
+  height: 28px;
+  border-radius: 10px;
 }
