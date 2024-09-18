@@ -8,8 +8,8 @@ export default function Modal({ isOpen, onClose }: any) {
     <div>
       {isOpen && (
         <div className={styles.modulComponent}>
-          <div className="bg-white rounded-lg overflow-hidden w-[640px] ">
-            <InputComponent />
+          <div className="bg-white rounded-lg overflow-hidden p-[16px] ">
+            <InputComponent onClose={onClose} />
           </div>
         </div>
       )}

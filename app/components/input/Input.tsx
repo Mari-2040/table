@@ -68,45 +68,6 @@ export default function Input(props: InputComponentProps) {
           placeholder={props.placeholder}
         />
       </div>
-
-      <div className="flex flex-col gap-2">
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Name"
-        />
-        <input
-          type="text"
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          placeholder="Status"
-        />
-        <input
-          type="text"
-          value={progress}
-          onChange={(e) => setProgress(e.target.value)}
-          placeholder="Progress"
-        />
-        <input
-          type="text"
-          value={launch}
-          onChange={(e) => setLaunch(e.target.value)}
-          placeholder="Launch"
-        />
-        <button onClick={handleAddReport}>Add Report</button>
-
-        <div>
-          {reportData.map((report, index) => (
-            <div key={index}>
-              <h3>{report.name}</h3>
-              <p>Status: {report.status}</p>
-              <p>Progress: {report.progress}</p>
-              <p>Launch: {report.launch}</p>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

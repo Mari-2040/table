@@ -8,7 +8,6 @@ import TableHeader from "../table/TableHeader";
 export default function Header({ reportData }: any) {
   return (
     <div className={styles.mari}>
-      <InputComponent />
       <TableHeader />
       <Table reportData={reportData} />
     </div>
