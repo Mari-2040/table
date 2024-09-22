@@ -1,8 +1,10 @@
 export interface DataSource {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
+  key?: string;
+  name?: string;
+  age?: string;
+  address?: string;
+  phone?: string;
+  company?: string;
 }
 
 export interface Column {
@@ -11,13 +13,17 @@ export interface Column {
   key: string;
 }
 
+export interface Filter {
+  description: string;
+}
+
 export interface TableState {
   dataSource: DataSource[];
   columns: Column[];
 }
 
 export interface DataSourceItem {
-  key: string;
+  key?: string;
   [key: string]: any;
 }
 

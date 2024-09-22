@@ -20,6 +20,8 @@ export default function Input(props: InputComponentProps) {
           className={styles.inputStyle}
           type="text"
           placeholder={props.placeholder}
+          onChange={props.change}
+          value={props.value}
         />
       </div>
     </div>

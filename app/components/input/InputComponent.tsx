@@ -1,6 +1,6 @@
 import Input from "./Input";
 import styles from "./input.module.css";
-import Button from "../button/Button";
+
 
 export default function InputComponent({
   name,
@@ -44,9 +44,6 @@ export default function InputComponent({
           label="launch"
           change={(e) => setLaunch(e.target.value)}
         />
-      </div>
-      <div className="flex justify-end ">
-        <Button />
       </div>
     </div>
   );

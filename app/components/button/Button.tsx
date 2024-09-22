@@ -1,11 +1,10 @@
 import React from "react";
 import styles from "./Button.module.css";
-import { modalState } from "@/app/store/Modal.store";
 
-export default function Button() {
+export default function Button({onClick, label} :any) {
   return (
-    <button className={styles.button} onClick={()=> modalState.isOpen = false}>
-      Add Report
+    <button className={styles.button} onClick={onClick}>
+      {label}
     </button>
   );
 }

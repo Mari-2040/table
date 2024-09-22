@@ -1,41 +1,18 @@
 "use client";
-// import React from "react";
-
-// export default function Table({ reportData }: any) {
-//   const data = reportData || [];
-
-//   return (
-//     <div className="bg-white shadow-md rounded-lg overflow-hidden border w-[93%] mt-6 mb-10">
-//       <table className="w-full">
-//         <tbody className="bg-white divide-y divide-gray-200">
-//           {data.map((item, index) => (
-//             <tr key={index} className="hover:bg-gray-50">
-//               <td className="px-6 py-4 whitespace-nowrap border-r text-[#000000] border-gray-300 hover:cursor-pointer">
-//                 {item.name}
-//               </td>
-//               <td className="px-6 py-4 whitespace-nowrap border-l border-r text-[#6A6A6A] text-sm border-gray-300 hover:cursor-pointer">
-//                 {item.status}
-//               </td>
-//               <td className="px-6 py-4 whitespace-nowrap border-l border-r text-[#6A6A6A] text-sm border-gray-300 hover:cursor-pointer">
-//                 {item.progress}
-//               </td>
-//               <td className="px-6 py-4 whitespace-nowrap border-l border-r text-[#0F66CC] text-sm border-gray-300 hover:cursor-pointer">
-//                 {item.launch}
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// }
-
 import React from "react";
 import { TableProps } from "@app/interfaces/Table.interface";
+import { fillterState } from "@app/store/Fillter.store";
+import { useSnapshot } from "valtio";
 
 const Table: React.FC<TableProps> = ({ dataSource, columns }) => {
+  const fillterSnap = useSnapshot(fillterState);
+  const filteredData = dataSource.filter((item) =>
+    Object.values(item).some((value) =>
+      value.toString().toLowerCase().includes(fillterSnap.fillter.toLowerCase())
+    )
+  );
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto rounded-lg border">
       <table className="min-w-full divide-y divide-gray-200 table-auto">
         <thead className="bg-gray-50">
           <tr>
@@ -49,15 +26,23 @@ const Table: React.FC<TableProps> = ({ dataSource, columns }) => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {dataSource.map((item) => (
-            <tr key={item.key}>
-              {columns.map((column) => (
-                <td key={column.key} className="px-6 py-4 whitespace-nowrap">
-                  {item[column.dataIndex]}
-                </td>
-              ))}
+          {filteredData.length > 0 ? (
+            filteredData.map((item) => (
+              <tr key={item.key}>
+                {columns.map((column) => (
+                  <td key={column.key} className="px-6 py-4 whitespace-nowrap">
+                    {item[column.dataIndex]}
+                  </td>
+                ))}
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={columns.length} className="px-6 py-4 text-center">
+                No data found
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
