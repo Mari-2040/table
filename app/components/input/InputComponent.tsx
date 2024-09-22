@@ -1,13 +1,11 @@
 import Input from "./Input";
 import styles from "./input.module.css";
 
-
 export default function InputComponent({
   name,
   status,
   progress,
   launch,
-  onClose,
   setName,
   setStatus,
   setProgress,

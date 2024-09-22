@@ -6,7 +6,6 @@ import { tableState } from "@/app/store/Table.store";
 import { Column, DataSource } from "@/app/interfaces/Table.interface";
 import Button from "../button/Button";
 import { useSnapshot } from "valtio";
-
 import { modalState } from "@/app/store/Modal.store";
 
 export default function Modal({ isOpen }: any) {
@@ -39,11 +38,10 @@ export default function Modal({ isOpen }: any) {
                 label="დახურვა"
               />
               <Button
-                onClick={() =>{
+                onClick={() => {
                   modalState.isOpen = false;
                   tableState.dataSource = [...tableSnap.dataSource, data];
-                }
-                }
+                }}
                 label="დამატება"
               />
             </div>

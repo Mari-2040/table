@@ -1,5 +1,4 @@
 import styles from "./input.module.css";
-
 type inputType = "text" | "number" | "date" | "password";
 interface InputComponentProps {
   initialData?: string;
