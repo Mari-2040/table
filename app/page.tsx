@@ -10,11 +10,22 @@ import styles from "./components/table/Table.module.css";
 export default function Home() {
   const modalSnap = useSnapshot(modalState);
   const TableSnap = useSnapshot(tableState);
+
+  const remove = (id: string) => {
+    tableState.dataSource = tableState.dataSource.filter(
+      (item) => item.id !== id
+    );
+  };
+
   return (
     <div className={styles.div_components}>
       <Modal isOpen={modalSnap.isOpen} />
       <TableOps />
-      <Table dataSource={tableState.dataSource} columns={tableState.columns} />
+      <Table
+        dataSource={tableState.dataSource}
+        columns={tableState.columns}
+        onDelete={remove}
+      />
     </div>
   );
 }

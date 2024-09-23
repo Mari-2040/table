@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../table/Table.module.css";
 import { modalState } from "@/app/store/Modal.store";
-import { fillterState } from "@app/store/Fillter.store";
+import { filterState } from "@app/store/Filter.store";
 
 export default function TableOps() {
   return (
@@ -17,7 +17,7 @@ export default function TableOps() {
             type="text"
             placeholder="Filter..."
             className="outline-none "
-            onChange={(e) => (fillterState.fillter = e.target.value)}
+            onChange={(e) => (filterState.filter = e.target.value)}
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"

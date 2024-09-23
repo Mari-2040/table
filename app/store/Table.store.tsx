@@ -1,5 +1,5 @@
 import { proxy, subscribe } from "valtio";
-
+import { v4 as uuidv4 } from "uuid";
 import { TableState } from "@/app/interfaces/Table.interface";
 
 const savedState = JSON.parse(localStorage.getItem("appState") || "{}");
@@ -7,7 +7,7 @@ const savedState = JSON.parse(localStorage.getItem("appState") || "{}");
 export const tableState = proxy<TableState>({
   dataSource: [
     {
-      key: "1",
+      id: uuidv4(),
       name: "Mike",
       age: "32",
       address: "10 Downing Street",
@@ -15,7 +15,7 @@ export const tableState = proxy<TableState>({
       company: "D.J",
     },
     {
-      key: "2",
+      id: uuidv4(),
       name: "John",
       age: "42",
       address: "10 Downing Street",

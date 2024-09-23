@@ -1,5 +1,5 @@
 export interface DataSource {
-  key?: string;
+  id?: string;
   name?: string;
   age?: string;
   address?: string;
@@ -30,4 +30,5 @@ export interface DataSourceItem {
 export interface TableProps {
   dataSource: DataSourceItem[];
   columns: Column[];
+  onDelete: (id: string) => void;
 }

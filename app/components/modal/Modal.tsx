@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Modal.module.css";
-import InputComponent from "../input/InputComponent";
 import Input from "../input/Input";
 import { tableState } from "@/app/store/Table.store";
 import { Column, DataSource } from "@/app/interfaces/Table.interface";
 import Button from "../button/Button";
 import { useSnapshot } from "valtio";
 import { modalState } from "@/app/store/Modal.store";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Modal({ isOpen }: any) {
   const [data, setData] = useState<DataSource>({});
@@ -40,7 +40,11 @@ export default function Modal({ isOpen }: any) {
               <Button
                 onClick={() => {
                   modalState.isOpen = false;
-                  tableState.dataSource = [...tableSnap.dataSource, data];
+                  tableState.dataSource = [
+                    ...tableSnap.dataSource,
+                    { ...data, id: uuidv4() },
+                  ];
+                  setData({});
                 }}
                 label="დამატება"
               />
