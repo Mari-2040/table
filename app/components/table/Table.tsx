@@ -9,7 +9,7 @@ const Table: React.FC<TableProps> = ({ dataSource, columns, onDelete }) => {
   const filterSnap = useSnapshot(filterState);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(50);
+  const [itemsPerPage] = useState(5);
 
   const filteredData = dataSource.filter((item) =>
     Object.values(item).some((value) =>
